@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+  <%- include('partials/head', { title: 'Edit • My EJS Blog' }) %>
+  <body>
+    <%- include('partials/header') %>
+
+    <main class="container">
+      <section class="card">
+        <h2>Edit post</h2>
+
+        <% if (!post) { %>
+          <p>Post not found.</p>
+        <% } else { %>
+          <form action="/posts/<%= post.id %>/update" method="POST" class="form-grid">
+            <div>
+              <label for="title">Title</label>
+              <input id="title" name="title" type="text" value="<%= post.title %>" required />
+            </div>
+
+            <div class="full">
+              <label for="body">Body</label>
+              <textarea id="body" name="body" rows="6" required><%= post.body %></textarea>
+            </div>
+
+            <div class="actions">
+              <a class="btn secondary" href="/">Cancel</a>
+              <button type="submit">Save changes</button>
+            </div>
+          </form>
+        <% } %>
+      </section>
+    </main>
+
+    <%- include('partials/footer') %>
+  </body>
+</html>

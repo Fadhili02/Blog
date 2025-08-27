@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+  <%- include('partials/head', { title: 'Home • My EJS Blog' }) %>
+  <body>
+    <%- include('partials/header') %>
+
+    <main class="container">
+      <section class="card">
+        <h2>Create a new post</h2>
+        <form action="/posts" method="POST" class="form-grid">
+          <div>
+            <label for="title">Title</label>
+            <input id="title" name="title" type="text" placeholder="Post title" required />
+          </div>
+          <div class="full">
+            <label for="body">Body</label>
+            <textarea id="body" name="body" rows="5" placeholder="Write something..." required></textarea>
+          </div>
+          <div class="actions">
+            <button type="submit">Publish</button>
+          </div>
+        </form>
+      </section>
+
+      <section class="posts">
+        <h2>Your posts</h2>
+
+        <% if (posts.length === 0) { %>
+          <p>No posts yet. Create your first one above.</p>
+        <% } else { %>
+          <ul class="post-list">
+            <% posts.forEach(function(p){ %>
+              <li class="post card">
+                <div class="post-header">
+                  <h3><%= p.title %></h3>
+                  <span class="date"><%= new Date(p.createdAt).toLocaleString() %></span>
+                </div>
+                <p><%= p.body %></p>
+
+                <div class="post-actions">
+                  <a class="btn secondary" href="/posts/<%= p.id %>/edit">Edit</a>
+
+                  <form action="/posts/<%= p.id %>/delete" method="POST" style="display:inline;"
+                        onsubmit="return confirm('Delete this post?')">
+                    <button class="btn danger" type="submit">Delete</button>
+                  </form>
+                </div>
+              </li>
+            <% }) %>
+          </ul>
+        <% } %>
+      </section>
+    </main>
+
+    <%- include('partials/footer') %>
+  </body>
+</html>
