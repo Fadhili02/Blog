@@ -38,25 +38,6 @@ my-blog/
         ├── header.ejs
         └── footer.ejs
 
------------------
-Getting Started
------------------
-1. Clone the repository:
-   git clone https://github.com/your-username/mblog.git
-   cd blog
-
-2. Install dependencies:
-   npm install
-
-3. Run the server:
-   Development (auto-restarts with nodemon):
-   npm run dev
-
-   Production:
-   npm start
-
-4. Open in browser:
-   http://localhost:3000
 
 -----------------
 Usage
